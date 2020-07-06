@@ -31,7 +31,7 @@ h1 {
     font-size: 2.75rem;
     font-weight: bold;
     text-transform: capitalize;
-    border-bottom: 1px red dotted;
+    border-bottom: 2px red dotted;
 }
 #pokeImgDiv {
     height: auto;

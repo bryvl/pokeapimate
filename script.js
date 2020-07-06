@@ -52,9 +52,12 @@ function fetchFn (pkmnNum) {
                     
                     // Grab Pokemon name and ID
                     pokeNameDiv.innerHTML = "";
+                    var pokeId = data.id;
                     var pokeName = data.species.name;
+                    var pokeIdNode = document.createTextNode(" (#" + pokeId + ") ");
                     var nameNode = document.createTextNode(pokeName);
                     pokeNameDiv.appendChild(nameNode);
+                    pokeNameDiv.appendChild(pokeIdNode);
                     
                     // Sprite grab
                     pokeImgDiv.innerHTML = '';
@@ -90,7 +93,20 @@ function fetchFn (pkmnNum) {
                     }
 
 
-                    // Move Grab
+                    // Stat name and stat Grab
+                    var displayedStatList = document.createElement('ul');
+                    for (i = 0; i < data.stats.length; i++) {
+                        var stat = data.stats[i].base_stat;
+                        var statName = data.stats[i].stat.name;
+                        var displayedStat = document.createElement('li');
+                        var displayedStatNameNode = document.createTextNode(statName + ": ");
+                        var displayedStatNode = document.createTextNode(stat);
+                        displayedStat.appendChild(displayedStatNameNode);
+                        displayedStat.appendChild(displayedStatNode);
+                        displayedStatList.appendChild(displayedStat);
+                    }
+                    pokeInfoDiv.appendChild(displayedStatList);
+
 
                     
                 });
