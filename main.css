@@ -47,6 +47,14 @@ h1 {
     text-align: center;
     text-transform: capitalize;
 }
+.statBox {
+    width: 45%;
+    display: inline-block;
+}
+.flavorBox {
+    width: 45%;
+    float: right;
+}
 #love {
     color: red;
 }
