@@ -25,7 +25,7 @@ h1 {
 #pokeName {
     color: red;
     width: 100%;
-    height: 25%;
+    height: 15%;
     margin: 10px 0;
     text-align: center;
     font-size: 2.75rem;
@@ -35,13 +35,17 @@ h1 {
 }
 #pokeImgDiv {
     height: auto;
+    width: 25%;
     display: block;
     float: left;
 }
 #pokeInfoDiv {
+    float: right;
     height: 65%;
+    width: 75%;
     color: #999;
     text-align: center;
+    text-transform: capitalize;
 }
 #love {
     color: red;

@@ -3,9 +3,9 @@
 // data storage
 
 // Tasks To-Do
-// - Make button to randomly load a Pokemon from the Poke API
-// - Display Pokemon name in its own header and sprite img on left in its own column
-// - Create Git repo for this project and regularly save changes
+// - Make button to randomly load a Pokemon from the Poke API (done)
+// - Display Pokemon name in its own header and sprite img on left in its own column (done)
+// - Create Git repo for this project and regularly save changes (done)
 // - Bring in pokemon details from API to display next to image
 // - Add ability to select a pokemon and add it to the user's team, displayed through pokeball-styled div
 //   - If a pokemon is selected the user should not be able to get it on their screen again
@@ -20,6 +20,7 @@
 
 var pokeNameDiv = document.getElementById('pokeName');
 var pokeImgDiv = document.getElementById('pokeImgDiv');
+var pokeInfoDiv = document.getElementById('pokeInfoDiv');
 var button = document.getElementById('pokeGet');
 // nesting the function to be called inside an outer generic function
 // makes it so that the onclick/fetch doesn't execute on page load
@@ -48,20 +49,50 @@ function fetchFn (pkmnNum) {
                     // this is where we're going to run the functions to display the data
                     // side note: console.log() does not like adding a string to the data apparently
                     // example on how to grab the pokemon's name in this api: console.log(data.names[8].name) = Butterfree;
+                    
+                    // Grab Pokemon name and ID
                     pokeNameDiv.innerHTML = "";
                     var pokeName = data.species.name;
                     var nameNode = document.createTextNode(pokeName);
                     pokeNameDiv.appendChild(nameNode);
                     
                     // Sprite grab
+                    pokeImgDiv.innerHTML = '';
                     img.src = data.sprites.front_default;
                     img.style.width = '300px';
                     img.style.height = '300px';
                     pokeImgDiv.appendChild(img);
 
+                    // Type Grab
+                    pokeInfoDiv.innerHTML = '';
+                    var pokeTypeH2 = document.createElement('h2');
+                    var pokeTypeSpan = document.createElement('span');
+                    // pokeTypeH2.appendChild(pokeTypeSpan);
+                    if (data.types.length > 1) {
+                        for (i = 0; i < data.types.length; i++) {
+                            var pokeType = data.types[i].type.name;
+                            var pokeTypeText = document.createTextNode(pokeType);
+                            if (i < data.types.length && i > 0) {
+                                var separatorSpan = document.createElement('span');
+                                var separator = document.createTextNode(' / ');
+                                separatorSpan.appendChild(separator);
+                                pokeTypeSpan.appendChild(separatorSpan);
+                            }
+                            pokeTypeSpan.appendChild(pokeTypeText);
+                        }
+                        pokeTypeH2.appendChild(pokeTypeSpan);
+                        pokeInfoDiv.appendChild(pokeTypeH2);
+                    } else {
+                        var pokeType = data.types[0].type.name;
+                        var pokeTypeText = document.createTextNode(pokeType);
+                        pokeTypeH2.appendChild(pokeTypeText);
+                        pokeInfoDiv.appendChild(pokeTypeH2);
+                    }
 
 
-                    // var pokeImg = ;
+                    // Move Grab
+
+                    
                 });
             }
             
